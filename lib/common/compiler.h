@@ -207,6 +207,14 @@
 #  define __has_feature(x) 0
 #endif
 
+#ifndef ZSTD_FALLTHROUGH
+# if __has_attribute(__fallthrough__)
+#  define ZSTD_FALLTHROUGH __attribute__((__fallthrough__))
+# else
+#  define ZSTD_FALLTHROUGH /* fall-through */
+# endif
+#endif
+
 /* detects whether we are being compiled under msan */
 #ifndef ZSTD_MEMORY_SANITIZER
 #  if __has_feature(memory_sanitizer)
